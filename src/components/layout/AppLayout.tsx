@@ -11,7 +11,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
-        <div className="container flex h-16 items-center justify-between">
+        <div className="w-full px-4 mx-auto sm:px-6 lg:px-8 flex h-16 items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/" className="font-semibold text-lg">
               Survey Tool
@@ -33,9 +33,9 @@ export function AppLayout({ children }: AppLayoutProps) {
           </div>
         </div>
       </header>
-      <main className="container py-6 md:py-8">{children}</main>
+      <main className="w-full px-4 mx-auto sm:px-6 lg:px-8 py-6 md:py-8">{children}</main>
       <footer className="border-t">
-        <div className="container flex h-16 items-center text-sm">
+        <div className="w-full px-4 mx-auto sm:px-6 lg:px-8 flex h-16 items-center text-sm">
           <p>© {new Date().getFullYear()} Survey Tool</p>
         </div>
       </footer>

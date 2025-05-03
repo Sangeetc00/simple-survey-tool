@@ -61,7 +61,7 @@ export function QuestionList({
             type="text"
             value={newQuestion}
             onChange={(e) => setNewQuestion(e.target.value)}
-            className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-4 py-2"
             placeholder="Enter question text"
           />
           <Select
@@ -88,7 +88,7 @@ export function QuestionList({
                   type="text"
                   value={option}
                   onChange={(e) => handleOptionChange(index, e.target.value)}
-                  className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 px-4"
                   placeholder={`Option ${index + 1}`}
                 />
                 <Button
