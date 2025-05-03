@@ -9,13 +9,6 @@ export interface Survey {
   createdBy: string; // User ID or email
 }
 
-export type QuestionType =
-  | "text"
-  | "single-select"
-  | "multi-select"
-  | "rating"
-  | "yes-no";
-
 export interface BaseQuestion {
   id: string;
   type: QuestionType;
@@ -54,12 +47,14 @@ export interface YesNoQuestion extends BaseQuestion {
   type: "yes-no";
 }
 
-export type Question =
-  | TextQuestion
-  | SingleSelectQuestion
-  | MultiSelectQuestion
-  | RatingQuestion
-  | YesNoQuestion;
+export type QuestionType = 'text' | 'multipleChoice';
+
+export interface Question {
+  id: number;
+  text: string;
+  type: QuestionType;
+  options?: string[];
+}
 
 export interface SurveyResponse {
   id: string;

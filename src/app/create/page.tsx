@@ -2,14 +2,40 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { SurveyHeader } from "@/components/survey-creator/SurveyHeader";
+import { QuestionList } from "@/components/survey-creator/QuestionList";
+import { Question, QuestionType } from "@/types/survey.types";
+
 
 export default function CreateSurvey() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [newQuestion, setNewQuestion] = useState("");
+
+  const handleAddQuestion = (type: QuestionType, options?: string[]) => {
+    if (newQuestion.trim()) {
+      const newQuestionObj: Question = {
+        id: Date.now(),
+        text: newQuestion.trim(),
+        type,
+        options: type === 'multipleChoice' ? options : undefined
+      };
+      setQuestions([...questions, newQuestionObj]);
+      setNewQuestion("");
+    }
+  };
+
+  const handleRemoveQuestion = (id: number) => {
+    setQuestions(questions.filter(question => question.id !== id));
+  };
 
   const handleCreateSurvey = () => {
-    // Logic to handle survey creation (e.g., API call or state update)
-    console.log("Survey Created:", { title, description });
+    console.log("Survey Created:", {
+      title,
+      description,
+      questions: questions.map(q => q.text)
+    });
   };
 
   return (
@@ -22,35 +48,22 @@ export default function CreateSurvey() {
         }}
         className="space-y-4"
       >
-        <div>
-          <label htmlFor="title" className="block text-sm font-medium">
-            Survey Title
-          </label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            placeholder="Enter survey title"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium">
-            Survey Description
-          </label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            placeholder="Enter survey description"
-            rows={4}
-            required
-          />
-        </div>
-        <Button type="submit" size="lg">
+        <SurveyHeader
+          title={title}
+          setTitle={setTitle}
+          description={description}
+          setDescription={setDescription}
+        />
+        
+        <QuestionList
+          questions={questions}
+          newQuestion={newQuestion}
+          setNewQuestion={setNewQuestion}
+          onAddQuestion={handleAddQuestion}
+          onRemoveQuestion={handleRemoveQuestion}
+        />
+
+        <Button type="submit" size="lg" disabled={questions.length === 0}>
           Create Survey
         </Button>
       </form>
