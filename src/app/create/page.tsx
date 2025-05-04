@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter
@@ -20,7 +20,7 @@ export default function CreateSurvey() {
         id: Date.now(),
         text: newQuestion.trim(),
         type,
-        options: type === 'multipleChoice' ? options : undefined
+        options: type === "multipleChoice" ? options : undefined,
       };
       setQuestions([...questions, newQuestionObj]);
       setNewQuestion("");
@@ -28,14 +28,14 @@ export default function CreateSurvey() {
   };
 
   const handleRemoveQuestion = (id: number) => {
-    setQuestions(questions.filter(question => question.id !== id));
+    setQuestions(questions.filter((question) => question.id !== id));
   };
 
   const handleCreateSurvey = () => {
     console.log("Survey Created:", {
       title,
       description,
-      questions: questions.map(q => q.text)
+      questions: questions.map((q) => q.text),
     });
   };
 
@@ -66,7 +66,7 @@ export default function CreateSurvey() {
           description={description}
           setDescription={setDescription}
         />
-        
+
         <QuestionList
           questions={questions}
           newQuestion={newQuestion}
@@ -75,7 +75,11 @@ export default function CreateSurvey() {
           onRemoveQuestion={handleRemoveQuestion}
         />
 
-        <Button type="submit" size="lg" disabled={questions.length === 0}>
+        <Button
+          type="submit"
+          size="lg" // Larger size for emphasis
+          className="mt-6 cursor-pointer" // Add margin-top for spacing
+        >
           Create Survey
         </Button>
       </form>

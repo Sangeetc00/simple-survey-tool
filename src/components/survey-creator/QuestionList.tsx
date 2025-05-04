@@ -117,6 +117,9 @@ export function QuestionList({
           type="button"
           onClick={handleAddQuestionWithOptions}
           disabled={!newQuestion.trim()}
+          variant="outline" // Make it a secondary button
+          size="sm" // Smaller size for less emphasis
+          className="mt-2 cursor-pointer" // Add margin-top for spacing
         >
           Add Question
         </Button>
@@ -137,6 +140,7 @@ export function QuestionList({
             <Button
               type="button"
               variant="destructive"
+              className="cursor-pointer"
               onClick={() => onRemoveQuestion(question.id)}
             >
               Remove
