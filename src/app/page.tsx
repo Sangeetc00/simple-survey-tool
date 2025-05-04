@@ -66,12 +66,12 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.95 }}>
             <Button asChild size="lg">
               <Link href="/create">Create Survey</Link>
             </Button>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.95 }}>
             <Button variant="outline" size="lg">
               <Link href="/surveys">View Demos</Link>
             </Button>

@@ -1,13 +1,14 @@
 "use client"
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { Button } from "@/components/ui/button";
 import { SurveyHeader } from "@/components/survey-creator/SurveyHeader";
 import { QuestionList } from "@/components/survey-creator/QuestionList";
 import { Question, QuestionType } from "@/types/survey.types";
 
-
 export default function CreateSurvey() {
+  const router = useRouter(); // Initialize useRouter
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -39,7 +40,18 @@ export default function CreateSurvey() {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto ">
+      {/* Back Button */}
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        onClick={() => router.back()} // Navigate to the previous page
+        className="mb-8 cursor-pointer"
+      >
+        ← Back
+      </Button>
+
       <h1 className="text-3xl font-bold mb-6">Create a New Survey</h1>
       <form
         onSubmit={(e) => {
