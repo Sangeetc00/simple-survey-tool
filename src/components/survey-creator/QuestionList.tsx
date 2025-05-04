@@ -122,11 +122,14 @@ export function QuestionList({
         </Button>
       </div>
 
-      {questions.map((question) => (
+      {questions.map((question, index) => (
         <div key={question.id} className="space-y-2 p-4 border rounded-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="font-medium">{question.text}</span>
+              {/* Add question number */}
+              <span className="font-medium">
+                {index + 1}. {question.text}
+              </span>
               <span className="text-sm text-gray-500">
                 ({question.type === "text" ? "Text Answer" : "Multiple Choice"})
               </span>
@@ -150,8 +153,8 @@ export function QuestionList({
               />
             ) : (
               <div className="space-y-2">
-                {question.options?.map((option, index) => (
-                  <div key={index} className="flex items-center gap-2">
+                {question.options?.map((option, optionIndex) => (
+                  <div key={optionIndex} className="flex items-center gap-2">
                     <input type="radio" disabled />
                     <span>{option}</span>
                   </div>
